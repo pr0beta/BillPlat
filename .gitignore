@@ -1,3 +1,5 @@
 certificate.pem
 certrequest.csr
 privatekey.pem
+nodemon-ignore
+.monitor

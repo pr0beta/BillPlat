@@ -1,0 +1,42 @@
+body {
+  font-family: Courier, monospace;
+}
+
+table#lineitems {
+  table-layout: fixed;
+  width: 450px;
+  overflow: hidden;
+}
+
+th {
+  border-bottom: 1px solid gray;
+
+}
+
+/*
+table {
+  border: 1px solid;
+  border-style: outset;
+}
+
+th {
+    border-style: outset;
+}
+
+td {
+    border: 1px solid;
+    border-style: outset;
+}*/
+
+.lineitem .description {
+  width: 350px;
+  text-align: left;
+  overflow: hidden;
+
+}
+
+.lineitem .amount {
+  width: 100px;
+  text-align: right;
+  overflow: hidden;
+}

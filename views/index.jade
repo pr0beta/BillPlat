@@ -1,6 +1,23 @@
 !!! 5
 html(lang="en")
   head
-    title= title
+    title= 'BillPlat'
+    link(rel='stylesheet', href='/stylesheets/reportbill.css')
+    script(type='text/javascript', src='/javascripts/json2.js')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+    script(type='text/javascript', src='/javascripts/underscore-min.js')
+    script(type='text/javascript', src='/javascripts/backbone.js')
+    script(type='text/javascript', src='/javascripts/reportbill.js')
+
   body
     h1 BillPlat - Split your bills
+    div(id="content")
+    input(id='save', name='', value='Fake save', type='button')
+    input(id='add', name='', value='Add', type='button')
+    p
+      ='A '
+      a(href="http://www.plexical.com") plexical
+      =' demonstration'
+    p='For your debugging pleasure, the dependencies not minified.'
+    pre(id="log")
