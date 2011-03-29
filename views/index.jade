@@ -1,7 +1,7 @@
 !!! 5
 html(lang="en")
   head
-    title= 'BillPlat'
+    title= 'BillPlat - Split Your Bills'
     link(rel='stylesheet', href='/stylesheets/reportbill.css')
     script(type='text/javascript', src='/javascripts/json2.js')
     script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
@@ -11,13 +11,6 @@ html(lang="en")
     script(type='text/javascript', src='/javascripts/reportbill.js')
 
   body
-    h1 BillPlat - Split your bills
     div(id="content")
-    input(id='save', name='', value='Fake save', type='button')
-    input(id='add', name='', value='Add', type='button')
-    p
-      ='A '
-      a(href="http://www.plexical.com") plexical
-      =' demonstration'
-    p='For your debugging pleasure, the dependencies not minified.'
-    pre(id="log")
+      div(id="billwrapper")
+
