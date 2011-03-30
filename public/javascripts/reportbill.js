@@ -55,6 +55,7 @@ $(function() {
     
 
     // Create a 'Models' instance, and give it a dataset we can play with
+    // limit line_item description to 40 chars
     myBills = new Bills([
       {
         id: 'b1'
@@ -134,11 +135,9 @@ $(function() {
     });
     
     // View for participants in lineitem upon rollover
-    LineItemParticipantsView = Backbone.View.extend({
+    LineItemParticipantView = Backbone.View.extend({
       render: function(){
-        this.el = _.template(
-          '<div class="lineitem_participants">Heidi</div>'
-        , this.model.toJSON());
+        this.el = _.template('<div class="lineitem_participant"><%= fullname %></div>', this.model.toJSON());
         return this;
       }
     });
@@ -189,7 +188,16 @@ $(function() {
       var lineitem_id = $(event.currentTarget).data("id");
       // line_items is a collection of a bill so we don't use get.
       var lineitem_participants = myBills.first().line_items.get(lineitem_id).get('participants');
-      console.log(lineitem_participants);
+      
+      // clear out lineitem_participants div in preparation for appending lineitem_participant
+      $('#lineitem_participants').html('');
+      
+      // add a view for each lineitem_participant
+      lineitem_participants.map(function(myLineItemParticipant){
+        var participant = myBills.first().participants.get(myLineItemParticipant);
+        var myLineItemParticipantView = new LineItemParticipantView({model: participant});
+        $('#lineitem_participants').append(myLineItemParticipantView.render().el);
+      });
 
     });
 });

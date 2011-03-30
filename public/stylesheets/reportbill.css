@@ -2,6 +2,7 @@ body {
   background: #ddd;
   margin:50px 0px; padding:0px; /* Need to set body margin and padding to get consistency between browsers. */
   text-align:center; /* Hack for IE5/Win */
+  position: relative;
 }
 
 	
@@ -10,14 +11,14 @@ body {
   margin:0px auto; /* Right and left margin widths set to "auto" */
   text-align:left; /* Counteract to IE5/Win Hack */
   padding:15px;
-/*  border:1px dashed #333;
-*/  position: relative;
+  border:1px dashed #333;
+  position: relative;
 }
 
 .bill {
   font-size: 14px;
   font-family: Courier, monospace;
-  width: 420px;
+  width: 400px;
   padding: 10px;
   position: absolute;
   left: 0px;
@@ -28,7 +29,7 @@ body {
 
 table#lineitems_table {
   table-layout: fixed;
-  width: 420px;
+  width: 400px;
   overflow: hidden;
   border: 0px;
   border-spacing: 0px;
@@ -74,7 +75,7 @@ tbody .lineitem {
 }
 
 .lineitem .amount {
-  width: 70px;
+  width: 50px;
   text-align: right;
   overflow: hidden;
 }
@@ -84,10 +85,12 @@ tbody .lineitem {
 }
 
 
-.lineitem_participants {
+#lineitem_participants {
   position: absolute;
   left: 0px;
-  right: 0px;
+  top: 0px;
+  width: 200px;
+  background: blue;
   z-index: 1000;
 }
 
