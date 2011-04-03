@@ -97,8 +97,8 @@ $(function() {
                       '<tfoot>' + 
                         '<tr><td class="add_line_item"><a href="">add item</a></td><td></td></tr>' +
                         '<tr class="lineitem"><td class="total">Sub Total</td><td class="amount">300</td>' +
-                        '<tr class="lineitem"><td class="total">Tax</td><td class="amount"><a>200</a></td>' +
-                        '<tr class="lineitem"><td class="total">Tip</td><td class="amount"><a>100</a></td>' +
+                        '<tr class="lineitem"><td class="total">Tax</td><td class="amount">200</td>' +
+                        '<tr class="lineitem"><td class="total">Tip</td><td class="amount">100</td>' +
                         '<tr class="lineitem"><td class="total">&nbsp</td><td></td>' +
                         '<tr class="lineitem"><td class="total">Grand Total</td><td class="amount">2100</td>' +
                       '</tfoot>' +
@@ -125,8 +125,8 @@ $(function() {
       render: function(){
         this.el = _.template(
           '<tr class="lineitem data" data-id="<%= id %>">' +
-            '<td class="description"><a><%= description %></a></td>' +
-            '<td class="amount"><a><%= amount_in_cents %></a></td>' +
+            '<td class="description"><%= description %></td>' +
+            '<td class="amount"><%= amount_in_cents %></td>' +
           '</tr>' 
           , this.model.toJSON());
         return this;
@@ -184,13 +184,16 @@ $(function() {
         $('#content').append(myBillView.render().el);
     });
     
-    $('.lineitem.data').live('mouseover', function(event) {
-      var lineitem_id = $(event.currentTarget).data("id");
+    
+    $('.lineitem.data').live('mouseenter', function(event) {
+      var lineitem_elem = $(event.currentTarget);
+      var lineitem_id = lineitem_elem.data("id");
       // line_items is a collection of a bill so we don't use get.
       var lineitem_participants = myBills.first().line_items.get(lineitem_id).get('participants');
       
       // clear out lineitem_participants div in preparation for appending lineitem_participant
-      $('#lineitem_participants').html('');
+      var lineitem_participants_elem = $('#lineitem_participants');
+      lineitem_participants_elem.html('');
       
       // add a view for each lineitem_participant
       lineitem_participants.map(function(myLineItemParticipant){
@@ -198,6 +201,29 @@ $(function() {
         var myLineItemParticipantView = new LineItemParticipantView({model: participant});
         $('#lineitem_participants').append(myLineItemParticipantView.render().el);
       });
+      
+      lineitem_participants_elem.css({'top': event.pageY + 5, 'left': event.pageX});
+      
+      lineitem_elem.bind('mousemove', function(event){
+        console.log('bind mousemoved');
+        lineitem_participants_elem.css({'top': event.pageY + 5, 'left': event.pageX});
+      }); 
+      
+      lineitem_elem.bind('mouseleave', function(event){
+          lineitem_participants_elem.html('');
 
+          lineitem_elem.unbind('mousemove');
+          console.log('unbind mousemove');
+          lineitem_elem.unbind('mouseleave');
+          console.log('unbind mouseleave');
+      });
     });
+    
+    
+
+    
+    
+    
+    
+    
 });

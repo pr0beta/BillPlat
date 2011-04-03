@@ -57,6 +57,16 @@ th {
   cursor: pointer;
 }
 
+.bill tfoot tr:hover {
+  color: #444;
+  cursor: pointer;
+}
+
+.bill tbody tr:hover {
+  color: #444;
+  cursor: pointer;
+}
+
 tbody .lineitem {
   color: #aaaaaa;
 }
@@ -86,7 +96,7 @@ tbody .lineitem {
 
 
 #lineitem_participants {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   width: 200px;
