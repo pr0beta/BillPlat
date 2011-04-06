@@ -101,7 +101,16 @@ tbody .lineitem {
   top: 0px;
   width: 200px;
   background: blue;
-  z-index: 1000;
+  z-index: 10;
+}
+
+#add_lineitem {
+  position: fixed;
+  left: 100px;
+  top: 100px;
+  width: 200px;
+  background: red;
+  z-index: 20;
 }
 
 #participants{

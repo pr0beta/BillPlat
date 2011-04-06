@@ -72,7 +72,7 @@ $(function() {
             id: 'l2'
           , description: "Curry Chicken"
           , amount_in_cents: 700
-          , participants: []
+          , participants: ['p3']
 
         }]
       }
@@ -151,6 +151,14 @@ $(function() {
       }
     });
     
+    // View for editing (or adding) line items
+    LineItemEditView = Backbone.View.extend({
+      render: function(){
+        this.el = _.template('<span>edit me!</span>');
+        return this;
+      }
+    });
+    
 
     // Create View Instances
     myBillViews = myBills.map(function(myBill) {
@@ -184,7 +192,7 @@ $(function() {
         $('#content').append(myBillView.render().el);
     });
     
-    
+    // Line Item rollover interactions
     $('.lineitem.data').live('mouseenter', function(event) {
       var lineitem_elem = $(event.currentTarget);
       var lineitem_id = lineitem_elem.data("id");
@@ -202,28 +210,25 @@ $(function() {
         $('#lineitem_participants').append(myLineItemParticipantView.render().el);
       });
       
-      lineitem_participants_elem.css({'top': event.pageY + 5, 'left': event.pageX});
+      lineitem_participants_elem.show();
       
+      lineitem_participants_elem.css({'top': event.pageY + 5, 'left': event.pageX});
+            
       lineitem_elem.bind('mousemove', function(event){
-        console.log('bind mousemoved');
         lineitem_participants_elem.css({'top': event.pageY + 5, 'left': event.pageX});
       }); 
       
       lineitem_elem.bind('mouseleave', function(event){
-          lineitem_participants_elem.html('');
+          lineitem_participants_elem.hide();
 
           lineitem_elem.unbind('mousemove');
-          console.log('unbind mousemove');
           lineitem_elem.unbind('mouseleave');
-          console.log('unbind mouseleave');
       });
     });
     
-    
-
-    
-    
-    
+    // Edit/Add Line Item interactions
+    var myLineItemEditView = new LineItemEditView({model: {}});
+    $("#add_lineitem").html(myLineItemEditView.render().el );
     
     
 });
